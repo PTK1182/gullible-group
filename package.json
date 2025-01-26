@@ -11,8 +11,5 @@
   "dependencies": {
     "@fontsource/biz-udpgothic": "^5.1.1",
     "astro": "^5.1.9"
-  },
-  "devDependencies": {
-    "unocss": "^65.4.3"
   }
 }
