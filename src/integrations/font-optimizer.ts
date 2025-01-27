@@ -2,8 +2,7 @@ import type { AstroIntegration } from "astro";
 import { promises as fs } from "fs";
 import path from "path";
 import * as fontkit from 'fontkit';
-
-const limitChars = 1000;
+import Fontmin from 'fontmin';
 
 export default (): AstroIntegration => ({
   name: "font-optimizer",
@@ -18,9 +17,7 @@ export default (): AstroIntegration => ({
             const textContent = extractTextFromHTML(bodyContent);
             console.log(textContent);
 
-            const font = fontkit.openSync("public/fonts/MPLUS1-Regular.woff2");
-            const subset = createFontSubset(font, textContent);
-            await fs.writeFile("dist/fonts/MPLUS1-Regular-subset.woff2", subset);
+            await createFontSubsetWithFontmin("public/fonts/MPLUS1-Regular.ttf", "あいうえおさしすせそ", "./");
 
         } catch (error) {
           console.error(
@@ -51,3 +48,21 @@ function createFontSubset(font: any, text: string): Buffer {
   return subset.encode();
 }
 
+
+async function createFontSubsetWithFontmin(inputPath: string, text: string, outputPath: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const fontmin = new Fontmin()
+        .src(inputPath)
+        .use(Fontmin.glyph({ text })) // 指定されたテキストのグリフを抽出
+        .use(Fontmin.ttf2woff2()) // WOFF2形式に変換
+        .dest(path.dirname(outputPath));
+  
+      fontmin.run((err: Error | null) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  }
