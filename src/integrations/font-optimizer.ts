@@ -1,7 +1,7 @@
 import type { AstroIntegration } from "astro";
 import { promises as fs } from "fs";
 import path from "path";
-import postcss from 'postcss';
+import * as fontkit from 'fontkit';
 
 const limitChars = 1000;
 
@@ -17,7 +17,11 @@ export default (): AstroIntegration => ({
             const bodyContent = extractBodyContent(htmlContent);
             const textContent = extractTextFromHTML(bodyContent);
             console.log(textContent);
-            
+
+            const font = fontkit.openSync("public/fonts/MPLUS1-Regular.woff2");
+            const subset = createFontSubset(font, textContent);
+            await fs.writeFile("dist/fonts/MPLUS1-Regular-subset.woff2", subset);
+
         } catch (error) {
           console.error(
             error
@@ -37,5 +41,13 @@ function extractBodyContent(html: string): string {
 // Helper function to extract text content from HTML
 function extractTextFromHTML(html: string): string {
   return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+// Function to create a font subset
+function createFontSubset(font: any, text: string): Buffer {
+  const glyphs = font.layout(text).glyphs;
+  const subset = font.createSubset();
+  glyphs.forEach(glyph => subset.includeGlyph(glyph));
+  return subset.encode();
 }
 

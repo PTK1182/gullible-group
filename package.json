@@ -9,7 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource/biz-udpgothic": "^5.1.1",
-    "astro": "^5.1.9"
+    "astro": "^5.1.9",
+    "fontkit": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/fontkit": "^2.0.7"
   }
 }
