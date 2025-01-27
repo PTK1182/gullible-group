@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/biz-udpgothic':
+        specifier: ^5.1.1
+        version: 5.1.1
       astro:
         specifier: ^5.1.9
         version: 5.1.9(jiti@2.4.2)(rollup@4.32.0)(tsx@4.19.2)(typescript@5.7.3)
@@ -344,6 +347,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource/biz-udpgothic@5.1.1':
+    resolution: {integrity: sha512-O8a0PwDBSHaMvSrZVlEmzFKsNZNuhNm/sEQcau9Ow1+d8VueXduvpsVpNdKiE81ZOydKuDm2bIujpW6bQxCTtA==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -1867,6 +1873,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.24.2':
     optional: true
+
+  '@fontsource/biz-udpgothic@5.1.1': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
