@@ -1,5 +1,7 @@
 import type { AstroIntegration } from "astro";
 import { promises as fs } from "fs";
+import path from "path";
+import postcss from 'postcss';
 
 const limitChars = 1000;
 
@@ -9,7 +11,13 @@ export default (): AstroIntegration => ({
     "astro:build:done": async ({ pages }) => {
       for (const page of pages) {
         try {
-            console.log(page)
+            // Construct the full path to the HTML file
+            const filePath = path.join('dist', page.pathname, 'index.html');
+            const htmlContent = await fs.readFile(filePath, 'utf-8');
+            const bodyContent = extractBodyContent(htmlContent);
+            const textContent = extractTextFromHTML(bodyContent);
+            console.log(textContent);
+            
         } catch (error) {
           console.error(
             error
@@ -19,4 +27,15 @@ export default (): AstroIntegration => ({
     },
   },
 });
+
+// Helper function to extract body content from HTML
+function extractBodyContent(html: string): string {
+  const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  return bodyMatch ? bodyMatch[1] : '';
+}
+
+// Helper function to extract text content from HTML
+function extractTextFromHTML(html: string): string {
+  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
 

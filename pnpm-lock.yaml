@@ -20,6 +20,9 @@ importers:
       astro-google-fonts-optimizer:
         specifier: ^0.2.2
         version: 0.2.2
+      postcss:
+        specifier: ^8.5.1
+        version: 8.5.1
     devDependencies:
       '@fullhuman/postcss-purgecss':
         specifier: ^7.0.2
