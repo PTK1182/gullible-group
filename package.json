@@ -10,13 +10,6 @@
   },
   "dependencies": {
     "@fontsource/biz-udpgothic": "^5.1.1",
-    "astro": "^5.1.9",
-    "astro-compress": "^2.3.6",
-    "astro-google-fonts-optimizer": "^0.2.2",
-    "postcss": "^8.5.1"
-  },
-  "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^7.0.2",
-    "cssnano": "^7.0.6"
+    "astro": "^5.1.9"
   }
 }
