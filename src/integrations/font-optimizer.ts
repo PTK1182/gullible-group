@@ -17,7 +17,8 @@ export default (): AstroIntegration => ({
             const textContent = extractTextFromHTML(bodyContent);
             console.log(textContent);
 
-            await createFontSubsetWithFontmin("public/fonts/MPLUS1-Regular.ttf", "あいうえおさしすせそ", "./");
+           
+            await createFontSubsetWithFontmin("public/fonts/MPLUS1-Regular.ttf", "あいうえおさしすせそ", "./MPLUS1-Regular-subset.woff2");
 
         } catch (error) {
           console.error(
