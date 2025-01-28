@@ -1,17 +1,36 @@
+---
+const pathname = Astro.url.pathname === "/" ? "index" : Astro.url.pathname.replace('/', '');
+
+function getFonts(pathname:string) {
+  return `
+    @font-face {
+      font-family: "MPLUS1";
+      src: url("/fonts/${pathname}.woff2") format('woff2'),
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      font-family: "MPLUS1", sans-serif;
+    }
+  `;
+}
+
+const fonts = getFonts(pathname);
+console.log(pathname);
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <style set:html={fonts} />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
-<style>
-    body {
-  font-family: 'BIZ UDPGothic', sans-serif;
-}
-</style>
