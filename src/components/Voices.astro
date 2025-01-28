@@ -1,0 +1,47 @@
+---
+import VoicesCard from "./VoicesCard.astro";
+
+const data=[
+
+{
+  title:"出会いが勇気に！！",
+  body:"学習障害の子供は一定数いるはずなのですが、支援を受けている子供が少ないため、身近な仲間ができずに孤立しやすいと思います。その中でKIKUTAの皆様に会えたことは、子供にとって本当に大きな出会いとなりました。",
+  avatar:"boy1"
+},
+{
+  title:"出会いが勇気に！！",
+  body:"学習障害の子供は一定数いるはずなのですが、支援を受けている子供が少ないため、身近な仲間ができずに孤立しやすいと思います。その中でKIKUTAの皆様に会えたことは、子供にとって本当に大きな出会いとなりました。",
+  avatar:"boy1"
+},
+{
+  title:"出会いが勇気に！！",
+  body:"学習障害の子供は一定数いるはずなのですが、支援を受けている子供が少ないため、身近な仲間ができずに孤立しやすいと思います。その中でKIKUTAの皆様に会えたことは、子供にとって本当に大きな出会いとなりました。",
+  avatar:"boy1"
+},
+{
+  title:"出会いが勇気に！！",
+  body:"学習障害の子供は一定数いるはずなのですが、支援を受けている子供が少ないため、身近な仲間ができずに孤立しやすいと思います。その中でKIKUTAの皆様に会えたことは、子供にとって本当に大きな出会いとなりました。",
+  avatar:"boy1"
+},
+
+]
+---
+
+<div class="relative max-w-6xl mx-auto">
+  <div class="flex flex-col justify-center px-2">
+    <div class="space-y-1">
+      <h2 class="text-primary-400 ~text-3xl/4xl font-bold text-center tracking-wide">Voices</h2>
+      <h3 class="text-center font-bold ~text-sm/base tracking-wide">お客様の声</h3>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 ~mt-5/8 gap-20 mx-auto">
+      {
+        data.map((item) => {
+          return (
+            <VoicesCard title={item.title} body={item.body} avatar={item.avatar}/>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>

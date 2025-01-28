@@ -1,0 +1,22 @@
+---
+const { title, body, avatar } = Astro.props;
+
+const temp=avatar as 'boy1' | 'boy2' | 'girl1' | 'woman1'
+const avatar_list={
+  "boy1":"/boy1.svg",
+  "boy2":"/boy2.svg",
+  "girl1":"/girl1.svg",
+  "woman1":"/woman1.svg"
+
+}
+
+console.log(title,body,avatar)
+---
+
+  <div class="bg-white rounded-md shadow p-5 space-y-5">
+    <div class="flex items-center space-x-5">
+      <img src={avatar_list[temp]} class="w-14" />
+      <p class="~text-sm font-bold">{title}</p>
+    </div>
+    <p set:html={body} class="text-black text-sm leading-5 tracking-wide"/>
+  </div>
