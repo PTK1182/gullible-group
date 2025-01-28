@@ -11,9 +11,12 @@
   "dependencies": {
     "@astrojs/tailwind": "^5.1.5",
     "astro": "^5.1.9",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-autoplay": "^8.5.2",
     "fontkit": "^2.0.4",
     "fontmin": "^2.0.0",
     "gulp-rename": "^2.0.0",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {

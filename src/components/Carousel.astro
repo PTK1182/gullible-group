@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/*.webp");
+const imagePaths = Object.keys(images);
+---
+
+<div class="embla overflow-hidden">
+  <div class="embla__container flex flex-shrink-0">
+    {
+      imagePaths?.map((item, index) => (
+        <div class="embla__slide flex-grow-0 min-w-64 mr-6  md:min-w-72 md:mr-10 ">
+          <Image
+            class="rounded-md"
+            loading={"lazy"}
+            src={images[item]()}
+            alt=""
+          />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import EmblaCarousel from "embla-carousel";
+  import Autoplay from "embla-carousel-autoplay";
+  import type { EmblaCarouselType } from "embla-carousel";
+  const emblaNode = document.querySelector(".embla");
+
+  const first_slide_delay = (
+    scrollSnapList: number[],
+    emblaApi: EmblaCarouselType
+  ) => {
+
+    let delay_list = [1000];
+    for (let i = 0; i < scrollSnapList.length-1; i++) {
+      delay_list.push(3200);
+    }
+    return delay_list;
+  };
+
+  const options = { loop: true, align: "center" };
+  const plugins = [
+    Autoplay({ stopOnInteraction: false, delay: first_slide_delay }),
+  ];
+  const emblaApi = EmblaCarousel(emblaNode, options, plugins);
+
+  const notEnoughToLoop = !emblaApi.internalEngine().slideLooper.canLoop();
+  if (notEnoughToLoop) {
+    // 現在のスライドを取得
+    const container = document.querySelector(".embla__container");
+    const slides = Array.from(container.children); // 既存スライドのリスト
+
+    // スライドを複製して追加
+    slides.forEach((slide) => {
+      const clone = slide.cloneNode(true); // スライドをクローン
+      container.appendChild(clone); // クローンをコンテナに追加
+    });
+
+    emblaApi.reInit();
+  }
+</script>
